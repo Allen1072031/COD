@@ -16,12 +16,15 @@ const routes = [
         name: 'AnomalyDetectionView',
         component: AnomalyDetectionView,
     },
-    { path: '/user/:id', component: MyTest }
+    { path: '/user/:id', component: MyTest },
+
 ];
 
 const router = createRouter({
     history,
     routes,
 });
+
+
 
 export default router;
