@@ -1,6 +1,6 @@
 import { createRouter, createMemoryHistory, createWebHistory } from 'vue-router';
 import Home from '../views/HomePage.vue';
-import About from '../views/AboutPage.vue';
+import AnomalyDetectionView from '../views/AnomalyDetectionView.vue';
 import MyTest from "@/components/MyTest.vue";
 
 const isServer = typeof window === 'undefined';
@@ -12,9 +12,9 @@ const routes = [
         component: Home,
     },
     {
-        path: '/about',
-        name: 'About',
-        component: About,
+        path: '/ad',
+        name: 'AnomalyDetectionView',
+        component: AnomalyDetectionView,
     },
     { path: '/user/:id', component: MyTest }
 ];

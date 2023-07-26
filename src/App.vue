@@ -28,7 +28,7 @@ import {RouterView} from "vue-router";
             <li>
               <a href="#" class="nav-link px-0 align-middle">
                 <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline"> <router-link
-                  to="/about">AD</router-link></span></a>
+                  to="/ad">AD</router-link></span></a>
             </li>
           </ul>
           <hr>
@@ -51,25 +51,11 @@ import {RouterView} from "vue-router";
         </div>
       </div>
       <div class="col py-3">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              Column
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              Column
-            </div>
-            <div class="col-6">
-              Column
-            </div>
-          </div>
-        </div>
+        <router-view/>
       </div>
     </div>
   </div>
-  <router-view/>
+
 </template>
 
 <script>
