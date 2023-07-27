@@ -1,5 +1,6 @@
 require('dotenv').config()
 
+const routes = require('./src/routes/APIRoutes');
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -37,12 +38,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to bezkoder application." });
 });
-app.post('/post', (req, res) => {
-    res.send('Post API')
-})
-app.get('/getAll', (req, res) => {
-    res.send('Get All API')
-})
+
+app.use('/api', routes)
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
