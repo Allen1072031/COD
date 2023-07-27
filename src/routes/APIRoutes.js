@@ -4,8 +4,9 @@ const router = express.Router()
 
 const Model = require('../models/mymodels');
 const gNbEvent = require('../models/gNbEventModel');
+const gNbPerformanceRecord = require('../models/gNbPerformanceRecordModel');
 
-
+// gNbEvent
 router.post('/gNbEvent/post', async (req, res) => {
     const data = new gNbEvent({
         start_time: req.body.start_time,
@@ -32,6 +33,31 @@ router.get('/gNbEvent/getAll', async (req, res) => {
     }
 })
 
+// gNbPerformanceRecord
+router.post('/gNbPerformanceRecord/post', async (req, res) => {
+    const data = new gNbPerformanceRecord({
+        record_type: req.body.record_type,
+        created_at: req.body.created_at,
+        value: req.body.value,
+    })
+    try {
+        const dataToSave = await data.save();
+        res.status(200).json(dataToSave)
+    }
+    catch (error) {
+        res.status(400).json({message: error.message})
+    }
+})
+router.get('/gNbPerformanceRecord/:record_type', async (req, res) => {
+    try{
+        const query = { record_type: req.params.record_type};
+        const data = await gNbPerformanceRecord.find(query);
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
 
 
 
