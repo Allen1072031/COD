@@ -14,7 +14,6 @@ import {
   Legend
 } from 'chart.js'
 import {Line} from 'vue-chartjs'
-import {onMounted, reactive} from "vue";
 import axios from "axios";
 
 ChartJS.register(
@@ -28,22 +27,20 @@ ChartJS.register(
 )
 
 const url = process.env.VUE_APP_BACKEND_URL + 'api/gNbPerformanceRecord/HandoverSuccessRate/';
-const raw_data = reactive({
-  handover_success_rate_data: '',
-})
 
 export default {
-  setup() {
-    onMounted(() => {
-      axios.get(url)
-          .then((res) => {
-            console.log(res.data)
-            raw_data.handover_success_rate_data = res.data
-          })
-    });
-    return { raw_data };
-  },
-  name: 'App',
+  // setup() {
+  //   onMounted(() => {
+  //     axios.get(url)
+  //         .then((res) => {
+  //           console.log(res.data)
+  //           raw_data.value.handover_success_rate_data = res.data
+  //           my_data = res.data[0].value.$numberDecimal
+  //           console.log(my_data)
+  //         })
+  //   });
+  //   return { raw_data, my_data };
+  // },
   components: {
     Line
   },
@@ -55,12 +52,12 @@ export default {
           {
             label: 'Data One',
             backgroundColor: '#f87979',
-            data: [40, 39, 10, 40, 39, 80, 40]
+            data: [2, 0.8, 0.7, 0.6, 0.5, 0.1, 0.5]
           },
           {
             label: 'Data Two',
             backgroundColor: '#a3d9c8',
-            data: [50, 19, 70, 44, 23, 85, 10]
+            data: [2, 0.8, 0.7, 0.6, 0.5, 0.1, 0.5]
           }
         ]
       },
@@ -68,6 +65,11 @@ export default {
         responsive: true
       }
     }
+  },
+  async created() {
+    const {data} = await axios.get(url);
+    this.data.labels[0] = 'ddd'
+    console.log(data)
   }
 }
 </script>

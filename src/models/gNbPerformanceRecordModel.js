@@ -11,6 +11,11 @@ const dataSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    cell_id: {
+        required: true,
+        type: String,
+        default: "0"
+    },
     value: {
         required: false,
         type: Decimal128,
