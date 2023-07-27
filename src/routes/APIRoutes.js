@@ -3,6 +3,38 @@ const express = require('express');
 const router = express.Router()
 
 const Model = require('../models/mymodels');
+const gNbEvent = require('../models/gNbEventModel');
+
+
+router.post('/gNbEvent/post', async (req, res) => {
+    const data = new gNbEvent({
+        start_time: req.body.start_time,
+        end_time: req.body.end_time,
+        cell_id: req.body.cell_id,
+        description: req.body.description,
+        last_time: req.body.last_time,
+    })
+    try {
+        const dataToSave = await data.save();
+        res.status(200).json(dataToSave)
+    }
+    catch (error) {
+        res.status(400).json({message: error.message})
+    }
+})
+router.get('/gNbEvent/getAll', async (req, res) => {
+    try{
+        const data = await gNbEvent.find();
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
+
+
+
+
 //Get by ID Method
 router.get('/getOne/:id', async (req, res) => {
     try{

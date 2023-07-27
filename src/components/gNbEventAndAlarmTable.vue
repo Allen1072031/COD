@@ -18,21 +18,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>Otto</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <td>@fat</td>
-          <td>@fat</td>
+        <tr
+             v-for="item in data.newsdata"
+             :key="item._id"
+        >
+          <th scope="row">{{item._id}}</th>
+          <td>{{new Date(item.start_time).toLocaleString('en-CA')}}</td>
+          <td>{{item.end_time}}</td>
+          <td>{{item.cell_id}}</td>
+          <td>{{item.description}}</td>
+          <td>{{item.last_time}}</td>
         </tr>
         </tbody>
       </table>
@@ -41,12 +36,32 @@
 </template>
 
 <script>
+import {onMounted, reactive} from 'vue';
+import axios from 'axios';
+
+const url = process.env.VUE_APP_BACKEND_URL + 'api/gNbEvent/getAll';
+
+const data = reactive({
+  newsdata:'',
+})
+
 export default {
+  setup() {
+    onMounted(() => {
+      axios.get(url)
+          .then((res) => {
+            console.log(res.data)
+            data.newsdata = res.data
+          })
+    });
+    return {data};
+  },
   name: 'gNbEventAndAlarmTable',
   props: {
     msg: String
   }
 };
+
 </script>
 
 <style scoped>
