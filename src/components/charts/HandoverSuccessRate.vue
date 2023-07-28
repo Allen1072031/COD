@@ -1,5 +1,5 @@
 <template>
-  <Line v-if="loaded" :data="chartData" :options="options" ref="line"/>
+  <Line v-if="loaded" :data="chartData" :options="options" />
 </template>
 
 <script>

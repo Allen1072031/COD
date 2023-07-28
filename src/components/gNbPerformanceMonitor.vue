@@ -8,7 +8,7 @@
             <HandoverSuccessRate />
           </div>
           <div class="col-6">
-
+            <ABS_QOS_DRB />
           </div>
         </div>
       </div>
@@ -19,9 +19,11 @@
 <script>
 
 import HandoverSuccessRate from "@/components/charts/HandoverSuccessRate.vue";
+import ABS_QOS_DRB from "@/components/charts/ABS_QOS_DRB.vue";
 
 export default {
   components: {
+    ABS_QOS_DRB,
     HandoverSuccessRate
   },
 }
