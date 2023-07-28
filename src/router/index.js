@@ -1,23 +1,29 @@
 import { createRouter, createMemoryHistory, createWebHistory } from 'vue-router';
-import Home from '../views/HomePage.vue';
 import AnomalyDetectionView from '../views/AnomalyDetectionView.vue';
-import MyTest from "@/components/MyTest.vue";
+import CellOutageDetectionView from "@/views/CellOutageDetectionView.vue";
+import HomeView from "@/views/HomeView.vue";
 
 const isServer = typeof window === 'undefined';
 const history = isServer ? createMemoryHistory() : createWebHistory();
 const routes = [
     {
         path: '/',
-        name: 'Home',
-        component: Home,
+        name: 'HomeView',
+        component: HomeView,
+    },
+    {
+        path: '/cod',
+        name: 'CellOutageDetectionView',
+        component: CellOutageDetectionView,
     },
     {
         path: '/ad',
         name: 'AnomalyDetectionView',
         component: AnomalyDetectionView,
+        props: {
+            msg: 'test'
+        }
     },
-    { path: '/user/:id', component: MyTest },
-
 ];
 
 const router = createRouter({

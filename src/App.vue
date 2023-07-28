@@ -22,7 +22,7 @@ import {RouterView} from "vue-router";
             <li class="nav-item">
               <a href="#" class="nav-link align-middle px-0">
                 <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">    <router-link
-                  to="/">COD</router-link></span>
+                  to="/cod">COD</router-link></span>
               </a>
             </li>
             <li>
