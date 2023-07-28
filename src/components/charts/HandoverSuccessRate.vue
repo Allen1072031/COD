@@ -76,9 +76,12 @@ export default {
     console.log(data)
     for (let i = data.length - 1; i >= 0; --i) {
       let today = new Date();
+
       let data_datetime = new Date(data[i].created_at);
+
       let diffMs = (today - data_datetime); // milliseconds between now & Christmas
-      let diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+
+      let diffMins = Math.round(diffMs / 60000) % 3600; // minutes
 
       if (raw_data[diffMins] == null) {
         raw_data[diffMins] = []
