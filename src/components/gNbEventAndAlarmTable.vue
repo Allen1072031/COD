@@ -50,7 +50,7 @@ export default {
     onMounted(() => {
       axios.get(url)
           .then((res) => {
-            console.log(res.data)
+            //console.log(res.data)
             data.newsdata = res.data
           })
     });

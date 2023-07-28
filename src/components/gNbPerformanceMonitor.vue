@@ -8,7 +8,7 @@
             <HandoverSuccessRate />
           </div>
           <div class="col-6">
-            Column
+
           </div>
         </div>
       </div>

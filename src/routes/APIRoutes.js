@@ -38,6 +38,7 @@ router.post('/gNbPerformanceRecord/post', async (req, res) => {
     const data = new gNbPerformanceRecord({
         record_type: req.body.record_type,
         created_at: req.body.created_at,
+        cell_id: req.body.cell_id,
         value: req.body.value,
     })
     try {
