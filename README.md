@@ -24,7 +24,12 @@ Note: The MongoDB Atlas is not required but MUST have corresponding **MongoDB** 
 
 Note: The BACKEND_URL port may not always be 8080, depending on your network configuration.
 
-## Project setup
+## Backend setup (8080 port)
+```
+node .\server.js
+```
+
+## Project setup (8081 port)
 ```
 npm install
 ```
@@ -43,6 +48,8 @@ npm run build
 ```
 npm run lint
 ```
+
+
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
