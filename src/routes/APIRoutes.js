@@ -32,6 +32,22 @@ router.get('/gNbEvent/getAll', async (req, res) => {
         res.status(500).json({message: error.message})
     }
 })
+router.patch('/gNbEvent/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const updatedData = req.body;
+        const options = { new: true };
+
+        const result = await gNbEvent.findByIdAndUpdate(
+            id, updatedData, options
+        )
+
+        res.send(result)
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message })
+    }
+})
 
 // gNbPerformanceRecord
 router.post('/gNbPerformanceRecord/post', async (req, res) => {
@@ -59,6 +75,12 @@ router.get('/gNbPerformanceRecord/:record_type', async (req, res) => {
         res.status(500).json({message: error.message})
     }
 })
+
+
+
+
+
+
 
 
 

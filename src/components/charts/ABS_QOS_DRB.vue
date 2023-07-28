@@ -13,6 +13,7 @@ import {
   Tooltip,
   Legend
 } from 'chart.js'
+
 import {Line} from 'vue-chartjs'
 import axios from "axios";
 

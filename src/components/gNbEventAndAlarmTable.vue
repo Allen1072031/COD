@@ -24,7 +24,7 @@
         >
           <th scope="row">{{item._id}}</th>
           <td>{{new Date(item.start_time).toLocaleString('en-CA')}}</td>
-          <td>{{item.end_time}}</td>
+          <td>{{new Date(item.end_time).toLocaleString('en-CA')}}</td>
           <td>{{item.cell_id}}</td>
           <td>{{item.description}}</td>
           <td>{{item.last_time}}</td>
