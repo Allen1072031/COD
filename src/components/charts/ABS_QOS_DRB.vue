@@ -27,7 +27,7 @@ ChartJS.register(
     Legend
 )
 
-const url = process.env.VUE_APP_BACKEND_URL + 'api/gNbPerformanceRecord/ABS_QOS_DRB/';
+const url = process.env.VUE_APP_BACKEND_URL + 'api/gNbPerformanceRecord/ABS_QoS_DRB/';
 
 let raw_data = new Array(3600);
 
@@ -67,7 +67,7 @@ export default {
       let today = new Date();
       let data_datetime = new Date(data[i].created_at);
       let diffMs = (today - data_datetime); // milliseconds between now & Christmas
-      let diffMins = Math.round(diffMs / 60000) % 3600; // minutes
+      let diffMins = Math.round(diffMs / 60000) % 300; // minutes
 
       if (raw_data[diffMins] == null) {
         raw_data[diffMins] = []
@@ -84,7 +84,7 @@ export default {
 
       raw_datasets.push({
         label: key,
-        borderColor: 'rgba(' + r + ',' + g + ',' + b + ',0.75)',
+        borderColor: 'rgba(' + r + ',' + g + ',' + b + ',0.5)',
         backgroundColor: 'rgba(' + r + ',' + g + ',' + b + ',0.3)',
         data: []
       })
