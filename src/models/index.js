@@ -19,7 +19,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-// db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
+db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
 
 db.gNbEvent = require("./gNbEvent.model.js")(sequelize, Sequelize);
 db.gNbPerformanceRecord = require("./gNbPerformanceRecord.model.js")(sequelize, Sequelize);

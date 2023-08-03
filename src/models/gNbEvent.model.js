@@ -1,10 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
     const gNbEvent = sequelize.define("gNbEvent", {
         start_time: {
-            type: DataTypes.DATETIME
+            type: DataTypes.DATE
         },
         end_time: {
-            type: DataTypes.DATETIME,
+            type: DataTypes.DATE,
             allowNull: true
         },
         cell_id: {
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING
         },
         last_time: {
-            type: DataTypes.DATETIME,
+            type: DataTypes.DATE,
             allowNull: true
         }
     });
