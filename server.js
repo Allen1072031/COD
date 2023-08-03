@@ -9,7 +9,7 @@ const app = express();
 
 const db = require("./src/models");
 
-db.sequelize.sync({force: true}).then(() => {
+db.sequelize.sync().then(() => {
     console.log('Table created successfully!');
 }).catch((error) => {
     console.error('Unable to create table : ', error);

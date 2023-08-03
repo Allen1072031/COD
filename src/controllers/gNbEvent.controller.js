@@ -29,7 +29,14 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    gNbEvent.findAll().then(data => {
+    let data_offset = req.params.offset
+    if(!data_offset) {
+        data_offset = 0
+    }else{
+        data_offset = parseInt(data_offset)
+    }
+    gNbEvent.findAll({limit: 10, offset: data_offset}).then(data => {
+        // console.log(data);
         res.send(data);
     }).catch(err => {
         res.status(500).send({

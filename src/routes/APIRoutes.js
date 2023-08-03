@@ -9,7 +9,7 @@ const tutorials = require('../controllers/tutorial.controller');
 
 // gNbEvent
 router.post('/gNbEvent', gNbEvent.create);
-router.get('/gNbEvent', gNbEvent.findAll);
+router.get('/gNbEvent/:offset?', gNbEvent.findAll);
 router.get('/gNbEvent/:cell_id', gNbEvent.findOne);
 router.put('/gNbEvent', gNbEvent.update);
 router.delete('/gNbEvent', gNbEvent.delete);

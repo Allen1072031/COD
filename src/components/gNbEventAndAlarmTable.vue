@@ -12,7 +12,7 @@
           <th scope="col">#</th>
           <th scope="col">發生時間</th>
           <th scope="col">解除時間</th>
-<!--          <th scope="col">Cell ID</th>-->
+          <!--          <th scope="col">Cell ID</th>-->
           <th scope="col">發生問題或警告</th>
           <th scope="col">持續時間(分)</th>
         </tr>
@@ -26,7 +26,7 @@
           <td>{{ new Date(item.start_time).toLocaleString('en-CA') }}</td>
           <td v-if="item.end_time">{{ new Date(item.end_time).toLocaleString('en-CA') }}</td>
           <td v-else>--</td>
-<!--          <td>{{ item.cell_id }}</td>-->
+          <!--          <td>{{ item.cell_id }}</td>-->
           <td v-if="item.description">{{ item.description }}</td>
           <td v-else>--</td>
           <td v-if="item.end_time">
@@ -36,6 +36,12 @@
         </tr>
         </tbody>
       </table>
+      <div class="d-flex justify-content-between">
+        <button class="btn btn-primary" @click="onOffsetClicked(-10)">prev</button>
+        <span>{{ data_offset + 1 }}/{{ data_offset + 10 }}</span>
+        <button class="btn btn-primary" @click="onOffsetClicked(10)">next</button>
+      </div>
+
     </div>
   </div>
 </template>
@@ -46,26 +52,42 @@ import axios from 'axios';
 
 const url = process.env.VUE_APP_BACKEND_URL + 'api/gNbEvent/';
 
+// let data_offset = 0
+
 const data = reactive({
   newsdata: '',
 })
 
+
 export default {
   setup() {
+    let data_offset = 0
     onMounted(() => {
-      axios.get(url)
+      axios.get(url + data_offset)
           .then((res) => {
             //console.log(res.data)
             data.newsdata = res.data
           })
     });
-    return {data};
+    return {data, data_offset};
+  },
+  methods: {
+    onOffsetClicked(num) {
+      this.data_offset += num
+      if (this.data_offset < 0)
+        this.data_offset = 0
+
+      axios.get(url + this.data_offset)
+          .then((res) => {
+            //console.log(res.data)
+            data.newsdata = res.data
+          })
+    }
   },
   name: 'gNbEventAndAlarmTable',
-  props: {
-    msg: String
-  }
-};
+  props: {msg: String}
+}
+;
 
 </script>
 
