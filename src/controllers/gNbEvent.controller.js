@@ -1,67 +1,69 @@
 const db = require("../models");
-const Tutorial = db.tutorials;
-const Op = db.Sequelize.Op;
+const gNbEvent = db.gNbEvent;
 
-// Create and Save a new Tutorial
+// Create and Save a new gNbEvent
 exports.create = (req, res) => {
-    if (!req.body.title) {
-        res.status(400).send({
-            message: "Content can be placed here!"
-        })
-    }
     // Creating a Tutorial
-    const tutorial = {
-        title: req.body.title,
+    const gnb_event = {
+        start_time: req.body.start_time,
+        end_time: req.body.end_time,
+        cell_id: req.body.cell_id,
         description: req.body.description,
-        published: req.body.published ? req.body.published : false
+        last_time: req.body.last_time,
     };
 
-// Saving the Tutorial in the database
-    Tutorial.create(tutorial).then(data => {
+    if (!gnb_event.cell_id || !gnb_event.start_time || !gnb_event.description) {
+        res.status(400).send({
+            message: "start_time, cell_id, description can not be null!"
+        })
+    }
+
+    // Saving the gnb_event in the database
+    gNbEvent.create(gnb_event).then(data => {
         res.send(data);
     }).catch(err => {
         res.status(500).send({
             Message:
-                err.message || "Some errors will occur when creating a tutorial"
+                err.message || "Some errors will occur when creating a gNbEvent"
         });
     });
 };
 
 exports.findAll = (req, res) => {
-    const title = req.query.title;
-    let condition = title ? {title: {[Op.like]: '%${title}%'}} : null;
-
-    Tutorial.findAll({where: condition}).then(data => {
+    gNbEvent.findAll().then(data => {
         res.send(data);
     }).catch(err => {
         res.status(500).send({
-            message:
-                err.message || "error"
+            message: err.message || "error"
         });
     });
 };
 
-// Find a single Tutorial with an id
+// Find specify events with a cell_id
 exports.findOne = (req, res) => {
-    const id = req.params.id;
+    const cell_id = req.query.cell_id;
+    let condition = cell_id ? {cell_id: cell_id} : null;
 
-    Tutorial.findByPk(id).then(data => {
+    gNbEvent.findAll({where: condition}).then(data => {
         res.send(data);
     }).catch(err => {
         res.status(500).send({
-            message: 'Error while retrieving tutorial with id=' + id,
-            error: err
+            message: err.message || "error"
         });
     });
 };
 
-// Update a Tutorial by the id in the request
+// Update
 exports.update = (req, res) => {
-    Tutorial.update({
-        description: req.body.description
+    gNbEvent.update({
+        start_time: req.body.start_time,
+        end_time: req.body.end_time,
+        cell_id: req.body.cell_id,
+        description: req.body.description,
+        last_time: req.body.last_time,
     }, {
         where: {
-            title: req.body.title
+            id: req.body.id
         }
     }).then((result) => {
         console.log(result)
@@ -78,11 +80,11 @@ exports.update = (req, res) => {
     }));
 };
 
-// Delete a Tutorial with the specified id in the request
+// Delete
 exports.delete = (req, res) => {
-    const title = req.body.title;
-    Tutorial.destroy({
-        where: {title: title ?? ''}
+    const id = req.body.id;
+    gNbEvent.destroy({
+        where: {id: id ?? null}
     }).then((count) => {
         if (!count) {
             return res.status(404).send({error: 'not found'});
