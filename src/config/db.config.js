@@ -1,5 +1,5 @@
 module.exports = {
-    HOST: "localhost",
+    HOST: "127.0.0.1",
     USER: process.env.VUE_APP_MYSQL_USERNAME,
     PASSWORD: process.env.VUE_APP_MYSQL_PASSWORD,
     DB: "test",
