@@ -51,7 +51,7 @@ export default {
       ],
     },
     options: {
-      responsive: true
+      responsive: true,
     },
     loaded: false
   }),
@@ -61,8 +61,8 @@ export default {
     let cell_id_sets = new Set();
     let raw_datasets = [];
     let raw_chart_labels = [];
-    //this.data.labels[0] = 'ddd'
-    console.log(data)
+    // this.data.labels[0] = 'ddd'
+    // console.log(data)
     for (let i = data.length - 1; i >= 0; --i) {
       let today = new Date();
       let data_datetime = new Date(data[i].createdAt);
@@ -90,8 +90,8 @@ export default {
       })
     }
 
-    console.log(raw_datasets)
-    console.log(raw_data)
+    // console.log(raw_datasets)
+    // console.log(raw_data)
 
 
     for (let i = raw_data.length - 1; i >= 0; --i) {
@@ -113,13 +113,13 @@ export default {
         }
       }
     }
-    console.log(raw_datasets)
+    // console.log(raw_datasets)
 
     this.chartData.datasets = raw_datasets;
     this.chartData.labels = raw_chart_labels;
 
     this.loaded = true
-    ///console.log(raw_data)
+    // console.log(raw_data)
   }
 }
 </script>

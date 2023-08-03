@@ -65,7 +65,31 @@ export default {
     onMounted(() => {
       axios.get(url + data_offset)
           .then((res) => {
-            //console.log(res.data)
+            for (let i = 0; i < res.data.length; i++) {
+              switch (res.data[i]['description']) {
+                case '1':
+                  res.data[i]['description'] = 'handover success rate wrong'
+                  break;
+                case '2':
+                  res.data[i]['description'] = 'abs(qos-drb) wrong'
+                  break;
+                case '3':
+                  res.data[i]['description'] = 'delay wrong'
+                  break;
+                case '4':
+                  res.data[i]['description'] = 'success rate and abs wrong'
+                  break;
+                case '5':
+                  res.data[i]['description'] = 'abs and delay wrong'
+                  break;
+                case '6':
+                  res.data[i]['description'] = 'success rate and delay wrong'
+                  break;
+                case '7':
+                  res.data[i]['description'] = 'all kpi wrong'
+                  break;
+              }
+            }
             data.newsdata = res.data
           })
     });
@@ -79,7 +103,31 @@ export default {
 
       axios.get(url + this.data_offset)
           .then((res) => {
-            //console.log(res.data)
+            for (let i = 0; i < res.data.length; i++) {
+              switch (res.data[i]['description']) {
+                case '1':
+                  res.data[i]['description'] = 'handover success rate wrong'
+                  break;
+                case '2':
+                  res.data[i]['description'] = 'abs(qos-drb) wrong'
+                  break;
+                case '3':
+                  res.data[i]['description'] = 'delay wrong'
+                  break;
+                case '4':
+                  res.data[i]['description'] = 'success rate and abs wrong'
+                  break;
+                case '5':
+                  res.data[i]['description'] = 'abs and delay wrong'
+                  break;
+                case '6':
+                  res.data[i]['description'] = 'success rate and delay wrong'
+                  break;
+                case '7':
+                  res.data[i]['description'] = 'all kpi wrong'
+                  break;
+              }
+            }
             data.newsdata = res.data
           })
     }
