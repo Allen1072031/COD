@@ -6,19 +6,19 @@
         <div class="row">
           <div class="col-md-12 col-lg-6 mb-4">
             <h6>Handover_Success_Rate (%)</h6>
-            <RecordChart record-type="HandoverSuccessRate"/>
+            <HandoverSuccessRate />
           </div>
           <div class="col-md-12 col-lg-6 mb-4">
             <h6>ABS_QOS_DRB (%)</h6>
-            <RecordChart record-type="ABS_QOS_DRB"/>
+            <ABS_QOS_DRB />
           </div>
           <div class="col-md-12 col-lg-6 mb-4">
             <h6>ULDelay_gNBDU_Cell</h6>
-            <RecordChart record-type="ULDelay_gNBDU_Cell"/>
+            <ULDelay_gNBDU_Cell />
           </div>
           <div class="col-md-12 col-lg-6 mb-4">
             <h6>DLDelay_gNBDU_Cell</h6>
-            <RecordChart record-type="DLDelay_gNBDU_Cell"/>
+            <DLDelay_gNBDU_Cell />
           </div>
         </div>
       </div>
@@ -28,11 +28,17 @@
 
 <script>
 
-import RecordChart from "@/components/charts/RecordChart.vue";
+import HandoverSuccessRate from "@/components/charts/HandoverSuccessRate.vue";
+import ABS_QOS_DRB from "@/components/charts/ABS_QOS_DRB.vue";
+import ULDelay_gNBDU_Cell from "@/components/charts/ULDelay_gNBDU_Cell.vue";
+import DLDelay_gNBDU_Cell from "@/components/charts/DLDelay_gNBDU_Cell.vue";
 
 export default {
   components: {
-    RecordChart,
+    DLDelay_gNBDU_Cell,
+    ULDelay_gNBDU_Cell,
+    ABS_QOS_DRB,
+    HandoverSuccessRate,
   },
 }
 </script>
