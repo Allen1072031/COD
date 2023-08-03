@@ -6,11 +6,11 @@
         <div class="row">
           <div class="col-6">
             <h6>Handover_Success_Rate (%)</h6>
-            <HandoverSuccessRate />
+            <RecordChart record-type="HandoverSuccessRate"/>
           </div>
           <div class="col-6">
             <h6>ABS_QOS_DRB (%)</h6>
-            <ABS_QOS_DRB />
+            <RecordChart record-type="ABS_QOS_DRB"/>
           </div>
         </div>
       </div>
@@ -20,13 +20,11 @@
 
 <script>
 
-import HandoverSuccessRate from "@/components/charts/HandoverSuccessRate.vue";
-import ABS_QOS_DRB from "@/components/charts/ABS_QOS_DRB.vue";
+import RecordChart from "@/components/charts/RecordChart.vue";
 
 export default {
   components: {
-    ABS_QOS_DRB,
-    HandoverSuccessRate
+    RecordChart,
   },
 }
 </script>

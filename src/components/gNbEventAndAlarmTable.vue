@@ -44,7 +44,7 @@
 import {onMounted, reactive} from 'vue';
 import axios from 'axios';
 
-const url = process.env.VUE_APP_BACKEND_URL + 'api/gNbEvent/getAll';
+const url = process.env.VUE_APP_BACKEND_URL + 'api/gNbEvent/';
 
 const data = reactive({
   newsdata: '',

@@ -1,5 +1,5 @@
 <template>
-  <Line v-if="loaded" :data="chartData" :options="options" />
+  <Line v-if="loaded" :data="chartData" :options="options"/>
 </template>
 
 <script>
@@ -13,6 +13,7 @@ import {
   Tooltip,
   Legend
 } from 'chart.js'
+
 import {Line} from 'vue-chartjs'
 import axios from "axios";
 
@@ -26,26 +27,13 @@ ChartJS.register(
     Legend
 )
 
-const url = process.env.VUE_APP_BACKEND_URL + 'api/gNbPerformanceRecord/Handover_Success_Rate/';
-
 let raw_data = new Array(3600);
 
 export default {
-  // setup() {
-  //   onMounted(() => {
-  //     axios.get(url)
-  //         .then((res) => {
-  //           console.log(res.data)
-  //           raw_data.value.handover_success_rate_data = res.data
-  //           my_data = res.data[0].value.$numberDecimal
-  //           console.log(my_data)
-  //         })
-  //   });
-  //   return { raw_data, my_data };
-  // },
   components: {
     Line
   },
+  props: ['recordType'],
   data: () => ({
     chartData: {
       labels: ['9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
@@ -68,6 +56,7 @@ export default {
     loaded: false
   }),
   async mounted() {
+    const url = process.env.VUE_APP_BACKEND_URL + 'api/gNbPerformanceRecord/' + this.recordType;
     const {data} = await axios.get(url);
     let cell_id_sets = new Set();
     let raw_datasets = [];
@@ -76,12 +65,9 @@ export default {
     console.log(data)
     for (let i = data.length - 1; i >= 0; --i) {
       let today = new Date();
-
-      let data_datetime = new Date(data[i].created_at);
-
+      let data_datetime = new Date(data[i].createdAt);
       let diffMs = (today - data_datetime); // milliseconds between now & Christmas
-
-      let diffMins = Math.round(diffMs / 60000) % 300; // minutes
+      let diffMins = Math.round(diffMs / 60000) % 20; // minutes
 
       if (raw_data[diffMins] == null) {
         raw_data[diffMins] = []
@@ -107,38 +93,28 @@ export default {
     console.log(raw_datasets)
     console.log(raw_data)
 
+
     for (let i = raw_data.length - 1; i >= 0; --i) {
       if (raw_data[i] === undefined)
         continue;
-      raw_chart_labels.push(i);
+
+      const record_time = new Date(new Date() - i * 60000);
+      raw_chart_labels.push(record_time.getMonth().toString() + '/' + record_time.getDay().toString() + ' ' + record_time.getHours() + ':' + (record_time.getMinutes() < 10 ? '0' : '') + record_time.getMinutes() + ' ');
+
       let current_minutes_cell_id_sets = new Set();
       for (let j = 0; j < raw_data[i].length; j++) {
-        if(current_minutes_cell_id_sets.has(raw_data[i][j]['cell_id']))
+        if (current_minutes_cell_id_sets.has(raw_data[i][j]['cell_id']))
           continue;
         current_minutes_cell_id_sets.add(raw_data[i][j]['cell_id'])
         for (let k = raw_datasets.length - 1; k >= 0; --k) {
           if (raw_datasets[k]['label'] === raw_data[i][j]['cell_id']) {
-            raw_datasets[k]['data'].push(raw_data[i][j]['value']['$numberDecimal'])
+            raw_datasets[k]['data'].push(raw_data[i][j]['value'])
           }
         }
       }
     }
     console.log(raw_datasets)
-    // updating chart
-    this.chartData.datasets = [  //Me new array of datasets
-      {
-        label: 'value_1',
-        borderColor: 'rgba(131, 24, 48, 1)',
-        backgroundColor: 'rgba(131, 24, 48, 0.3)',
-        data: [0.3, 0.8, 0.7, 0.6, 0.5, 0.1, 0.5]
-      },
-      {
-        label: 'value_2',
-        borderColor: 'rgba(216, 42, 81, 1)',
-        backgroundColor: 'rgba(216, 42, 81, 0.3)',
-        data: [0.3, 0.8, 0.7, 0.6, 0.5, 0.1, 0.5]
-      }
-    ]
+
     this.chartData.datasets = raw_datasets;
     this.chartData.labels = raw_chart_labels;
 
