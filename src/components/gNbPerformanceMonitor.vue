@@ -12,6 +12,14 @@
             <h6>ABS_QOS_DRB (%)</h6>
             <RecordChart record-type="ABS_QOS_DRB"/>
           </div>
+          <div class="col-6">
+            <h6>ULDelay_gNBDU_Cell</h6>
+            <RecordChart record-type="ULDelay_gNBDU_Cell"/>
+          </div>
+          <div class="col-6">
+            <h6>DLDelay_gNBDU_Cell</h6>
+            <RecordChart record-type="DLDelay_gNBDU_Cell"/>
+          </div>
         </div>
       </div>
     </div>
