@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Click COD to view more</h1>
+    <h1>Click <a href="/cod">COD</a> to view more</h1>
   </div>
 </template>
 
