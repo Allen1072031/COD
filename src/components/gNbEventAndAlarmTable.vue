@@ -39,7 +39,7 @@
       <div class="d-flex justify-content-between">
         <button class="btn btn-primary" @click="onOffsetClicked(-10)">prev</button>
         <span>{{ data_offset + 1 }}/{{ data_offset + 10 }}</span>
-        <button class="btn btn-primary" @click="onOffsetClicked(10)">next</button>
+        <button class="btn btn-primary" @click="onOffsetClicked(10)" :disabled="next_disable">next</button>
       </div>
 
     </div>
@@ -93,7 +93,13 @@ export default {
             data.newsdata = res.data
           })
     });
+
     return {data, data_offset};
+  },
+  computed:{
+    next_disable(){
+      return data.newsdata.length < 10;
+    }
   },
   methods: {
     onOffsetClicked(num) {
@@ -103,6 +109,7 @@ export default {
 
       axios.get(url + this.data_offset)
           .then((res) => {
+
             for (let i = 0; i < res.data.length; i++) {
               switch (res.data[i]['description']) {
                 case '1':
