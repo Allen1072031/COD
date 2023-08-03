@@ -11,25 +11,21 @@ npm 9.6.7
 
 You **MUST** create .env file in the root folder
 the file **SHOULD** contain:
+```                                                                                                   .env
+VUE_APP_BACKEND_URL="http://<your ip address>:8080/"
+VUE_APP_MYSQL_USERNAME=""
+VUE_APP_MYSQL_PASSWORD=""
 ```
-MONGODB_URL=
-VUE_APP_BACKEND_URL=
-```
-For example: (Using **MongoDB Atlas**)
-```
-MONGODB_URL="mongodb+srv://<username>:<password>@cluster0.nnojg.mongodb.net/?retryWrites=true&w=majority"
-VUE_APP_BACKEND_URL="http://localhost:8080/"
-```
-Note: The MongoDB Atlas is not required but MUST have corresponding **MongoDB** end-point to access for saving data.
-
 Note: The BACKEND_URL port may not always be 8080, depending on your network configuration.
+
+Note: You may need to edit corsOptions in server.js and webSocketURL in vue.config.js.
 
 ## Backend setup (8080 port)
 ```
 node .\server.js
 ```
 
-## Project setup (8081 port)
+## Project setup (8081 port, can be changed)
 ```
 npm install
 ```
