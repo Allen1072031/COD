@@ -1,3 +1,0 @@
-/home/allen/Desktop/COD/build/CMakeFiles/lr-example.dir
-/home/allen/Desktop/COD/build/CMakeFiles/edit_cache.dir
-/home/allen/Desktop/COD/build/CMakeFiles/rebuild_cache.dir
