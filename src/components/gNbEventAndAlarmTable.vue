@@ -12,7 +12,7 @@
           <th scope="col">#</th>
           <th scope="col">發生時間</th>
           <th scope="col">解除時間</th>
-          <th scope="col">Cell ID</th>
+<!--          <th scope="col">Cell ID</th>-->
           <th scope="col">發生問題或警告</th>
           <th scope="col">持續時間(分)</th>
         </tr>
@@ -26,7 +26,7 @@
           <td>{{ new Date(item.start_time).toLocaleString('en-CA') }}</td>
           <td v-if="item.end_time">{{ new Date(item.end_time).toLocaleString('en-CA') }}</td>
           <td v-else>--</td>
-          <td>{{ item.cell_id }}</td>
+<!--          <td>{{ item.cell_id }}</td>-->
           <td v-if="item.description">{{ item.description }}</td>
           <td v-else>--</td>
           <td v-if="item.end_time">
