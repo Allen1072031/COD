@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define("gNbPerformanceRecord", {
         record_type: {
-            type: DataTypes.DATE
+            type: DataTypes.STRING
         },
         cell_id: {
             type: DataTypes.STRING
