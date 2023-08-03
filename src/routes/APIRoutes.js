@@ -5,6 +5,9 @@ const router = express.Router()
 const gNbEvent = require('../models/gNbEventModel');
 const gNbPerformanceRecord = require('../models/gNbPerformanceRecordModel');
 
+const tutorials = require('../controllers/tutorial.controller');
+router.post('/tutorials', tutorials.create);
+
 // gNbEvent
 router.post('/gNbEvent/post', async (req, res) => {
     const data = new gNbEvent({
