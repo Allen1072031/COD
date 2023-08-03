@@ -16,17 +16,16 @@ exports.create = (req, res) => {
         res.status(400).send({
             message: "start_time, cell_id, description can not be null!"
         })
-    }
-
-    // Saving the gnb_event in the database
-    gNbEvent.create(gnb_event).then(data => {
-        res.send(data);
-    }).catch(err => {
-        res.status(500).send({
-            Message:
-                err.message || "Some errors will occur when creating a gNbEvent"
+    } else {
+        // Saving the gnb_event in the database
+        gNbEvent.create(gnb_event).then(data => {
+            res.send(data);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some errors will occur when creating a gNbEvent"
+            });
         });
-    });
+    }
 };
 
 exports.findAll = (req, res) => {

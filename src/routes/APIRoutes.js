@@ -8,18 +8,18 @@ const gNbPerformanceRecord = require('../controllers/gNbPerformanceRecord.contro
 const tutorials = require('../controllers/tutorial.controller');
 
 // gNbEvent
-router.post('/api/gNbEvent', gNbEvent.create);
-router.get('/api/gNbEvent', gNbEvent.findAll);
-router.get('/api/gNbEvent/:cell_id', gNbEvent.findOne);
-router.put('/api/gNbEvent', gNbEvent.update);
-router.delete('/api/gNbEvent', gNbEvent.delete);
+router.post('/gNbEvent', gNbEvent.create);
+router.get('/gNbEvent', gNbEvent.findAll);
+router.get('/gNbEvent/:cell_id', gNbEvent.findOne);
+router.put('/gNbEvent', gNbEvent.update);
+router.delete('/gNbEvent', gNbEvent.delete);
 
 
 // gNbPerformanceRecord
-router.post('/api/gNbPerformanceRecord', gNbPerformanceRecord.create);
-router.get('/api/gNbPerformanceRecord/:record_type', gNbPerformanceRecord.findByRecordType);
-router.put('/api/gNbPerformanceRecord', gNbPerformanceRecord.update);
-router.delete('/api/gNbPerformanceRecord', gNbPerformanceRecord.delete);
+router.post('/gNbPerformanceRecord', gNbPerformanceRecord.create);
+router.get('/gNbPerformanceRecord/:record_type', gNbPerformanceRecord.findByRecordType);
+router.put('/gNbPerformanceRecord', gNbPerformanceRecord.update);
+router.delete('/gNbPerformanceRecord', gNbPerformanceRecord.delete);
 
 
 router.post('/tutorials', tutorials.create);

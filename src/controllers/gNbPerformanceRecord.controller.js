@@ -3,28 +3,30 @@ const gNbPerformanceRecord = db.gNbPerformanceRecord;
 
 // Create and Save a new gNbPerformanceRecord
 exports.create = (req, res) => {
-    // Creating a Tutorial
+    // Creating a gNbPerformanceRecord
     const gnb_performance_record = {
         record_type: req.body.record_type,
         value: req.body.value,
         cell_id: req.body.cell_id,
+        createdAt: req.body.createdAt,
     };
+    console.log(gnb_performance_record);
 
-    if (!gNbPerformanceRecord.record_type || !gNbPerformanceRecord.cell_id) {
+    if (!gnb_performance_record.record_type || !gnb_performance_record.cell_id) {
         res.status(400).send({
             message: "cell_id, record_type can not be null!"
         })
-    }
-
-    // Saving the gnb_event in the database
-    gNbPerformanceRecord.create(gnb_performance_record).then(data => {
-        res.send(data);
-    }).catch(err => {
-        res.status(500).send({
-            Message:
-                err.message || "Some errors will occur when creating a gNbPerformanceRecord"
+    } else {
+        // Saving the gnb_performance_record in the database
+        gNbPerformanceRecord.create(gnb_performance_record).then(data => {
+            res.send(data);
+        }).catch(err => {
+            res.status(500).send({
+                Message:
+                    err.message || "Some errors will occur when creating a gNbPerformanceRecord"
+            });
         });
-    });
+    }
 };
 
 exports.findByRecordType = (req, res) => {

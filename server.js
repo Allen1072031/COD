@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const routes = require('./src/routes/APIRoutes');
+const apiRoutes = require('./src/routes/APIRoutes');
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -9,7 +9,7 @@ const app = express();
 
 const db = require("./src/models");
 
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({force: true}).then(() => {
     console.log('Table created successfully!');
 }).catch((error) => {
     console.error('Unable to create table : ', error);
@@ -22,18 +22,18 @@ let corsOptions = {
 
 app.use(cors(corsOptions));
 
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({extended: true}));
+
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
-
 // simple route
 app.get("/", (req, res) => {
-    res.json({ message: "Welcome to bezkoder application." });
+    res.json({message: "backend index."});
 });
 
-app.use('/api', routes)
+app.use('/api', apiRoutes)
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
