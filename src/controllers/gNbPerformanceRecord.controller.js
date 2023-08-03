@@ -30,7 +30,7 @@ exports.create = (req, res) => {
 };
 
 exports.findByRecordType = (req, res) => {
-    const record_type = req.query.record_type;
+    const record_type = req.params.record_type;
     let condition = record_type ? {record_type: record_type} : null;
     gNbPerformanceRecord.findAll({where: condition}).then(data => {
         res.send(data);
