@@ -82,7 +82,8 @@ export default {
       let b = Math.floor(Math.random() * 256)
 
       raw_datasets.push({
-        label: key,
+        // label: key,
+        label: 'ABS_QOS_DRB', // fixed label (without considering cell_id)
         borderColor: 'rgba(' + r + ',' + g + ',' + b + ',0.5)',
         backgroundColor: 'rgba(' + r + ',' + g + ',' + b + ',0.3)',
         data: []
