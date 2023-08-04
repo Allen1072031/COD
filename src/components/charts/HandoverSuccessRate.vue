@@ -71,9 +71,9 @@ export default {
       if (raw_data[diffMins] == null) {
         raw_data[diffMins] = []
       }
+      data[i]['cell_id'] = 'HandoverSuccessRate' // // fixed label (without considering cell_id)
       raw_data[diffMins].push(data[i])
-      // cell_id_sets.add(data[i]['cell_id'])
-      cell_id_sets.add('HandoverSuccessRate') // fixed label (without considering cell_id)
+      cell_id_sets.add(data[i]['cell_id'])
     }
 
     // iter over all possible cell_id
