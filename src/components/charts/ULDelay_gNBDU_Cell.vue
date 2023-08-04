@@ -72,7 +72,8 @@ export default {
         raw_data[diffMins] = []
       }
       raw_data[diffMins].push(data[i])
-      cell_id_sets.add(data[i]['cell_id'])
+      // cell_id_sets.add(data[i]['cell_id'])
+      cell_id_sets.add('ULDelay_gNBDU_Cell') // fixed label (without considering cell_id)
     }
 
     // iter over all possible cell_id
@@ -82,8 +83,7 @@ export default {
       let b = Math.floor(Math.random() * 256)
 
       raw_datasets.push({
-        // label: key,
-        label: 'ULDelay_gNBDU_Cell', // fixed label (without considering cell_id)
+        label: key,
         borderColor: 'rgba(' + r + ',' + g + ',' + b + ',0.5)',
         backgroundColor: 'rgba(' + r + ',' + g + ',' + b + ',0.3)',
         data: []
