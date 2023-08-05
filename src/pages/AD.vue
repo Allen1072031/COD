@@ -103,9 +103,9 @@
 </template>
 <script>
 import { Card } from "@/components/index";
-import LineChart from "@/components/Charts/LineChart";
-import BarChart from "@/components/Charts/BarChart";
-import * as chartConfigs from "@/components/Charts/config";
+import LineChart from "@/components/charts/LineChart";
+import BarChart from "@/components/charts/BarChart";
+import * as chartConfigs from "@/components/charts/config";
 import BaseTable from "@/components/BaseTable";
 import config from "@/config";
 
