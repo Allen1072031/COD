@@ -71,6 +71,8 @@ export default {
       if (raw_data[diffMins] == null) {
         raw_data[diffMins] = []
       }
+
+      data[i]['cell_id'] = 'DLDelay_gNBDU_Cell' // // fixed label (without considering cell_id)
       raw_data[diffMins].push(data[i])
       cell_id_sets.add(data[i]['cell_id'])
     }
