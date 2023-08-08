@@ -10,15 +10,15 @@ const app = express();
 const db = require("./src/models");
 
 // db.sequelize.sync().then(() => {
-db.sequelize.sync({ force: true}).then(() => {
+db.sequelize.sync({force: true}).then(() => {
     console.log('Table created successfully!');
 }).catch((error) => {
     console.error('Unable to create table : ', error);
 });
 
 let corsOptions = {
-//    origin: "http://64.176.45.205:8085"
-    origin: "http://localhost:8081"
+    origin: "http://64.176.45.205:8085"
+//     origin: "http://localhost:8081"
 };
 
 
