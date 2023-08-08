@@ -9,7 +9,6 @@
       <table class="table">
         <thead>
         <tr>
-          <th scope="col">#</th>
           <th scope="col">發生時間</th>
           <th scope="col">解除時間</th>
           <!--          <th scope="col">Cell ID</th>-->
@@ -22,9 +21,8 @@
             v-for="item in data.newsdata"
             :key="item._id"
         >
-          <th scope="row">{{ item._id }}</th>
-          <td>{{ new Date(item.start_time).getMonth().toString() + '/' + new Date(item.start_time).getDay().toString() + ' ' + new Date(item.start_time).getHours() + ':' + (new Date(item.start_time).getMinutes() < 10 ? '0' : '') + new Date(item.start_time).getMinutes() }}</td>
-          <td v-if="item.end_time">{{ new Date(item.end_time).getMonth().toString() + '/' + new Date(item.end_time).getDay().toString() + ' ' + new Date(item.end_time).getHours() + ':' + (new Date(item.end_time).getMinutes() < 10 ? '0' : '') + new Date(item.end_time).getMinutes() }}</td>
+          <td>{{ (new Date(item.start_time).getMonth()+1).toString() + '/' + (new Date(item.start_time).getDay()+1).toString() + ' ' + (new Date(item.start_time).getHours() < 10 ? '0' : '') + new Date(item.start_time).getHours().toString() + ':' + (new Date(item.start_time).getMinutes() < 10 ? '0' : '') + new Date(item.start_time).getMinutes().toString() }}</td>
+          <td v-if="item.end_time">{{ (new Date(item.end_time).getMonth()+1).toString() + '/' + (new Date(item.end_time).getDay()+1).toString() + ' ' + (new Date(item.start_time).getHours() < 10 ? '0' : '') + new Date(item.end_time).getHours().toString() + ':' + (new Date(item.end_time).getMinutes() < 10 ? '0' : '') + new Date(item.end_time).getMinutes().toString() }}</td>
           <td v-else>--</td>
           <!--          <td>{{ item.cell_id }}</td>-->
           <td v-if="item.description">{{ item.description }}</td>

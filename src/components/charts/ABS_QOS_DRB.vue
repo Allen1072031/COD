@@ -66,7 +66,7 @@ export default {
       let today = new Date();
       let data_datetime = new Date(data[i].createdAt);
       let diffMs = (today - data_datetime); // milliseconds between now & target
-      let diffMins = Math.round(diffMs / 60000) % 20; // minutes
+      let diffMins = Math.round(diffMs / 60000) % 3600; // minutes
 
       if (raw_data[diffMins] == null) {
         raw_data[diffMins] = []
@@ -75,8 +75,6 @@ export default {
       raw_data[diffMins].push(data[i])
       cell_id_sets.add(data[i]['cell_id'])
 
-      // time
-      raw_chart_labels.push(data_datetime.getMonth().toString() + '/' + data_datetime.getDay().toString() + ' ' + data_datetime.getHours() + ':' + (data_datetime.getMinutes() < 10 ? '0' : '') + data_datetime.getMinutes() + ' ');
     }
 
     // iter over all possible cell_id
@@ -96,15 +94,23 @@ export default {
     // console.log(raw_datasets)
     // console.log(raw_data)
 
-
+    let cnt = 0
     for (let i = raw_data.length - 1; i >= 0; --i) {
-      if (raw_data[i] === undefined)
+      if (i < 0 || raw_data[i] === undefined)
         continue;
+
+      cnt++;
+      if(cnt > 20)
+        break;
+
+      let data_datetime = new Date(raw_data[i][0]['createdAt'])
+      raw_chart_labels.push((data_datetime.getMonth()+1).toString() + '/' + (data_datetime.getDay()+1).toString() + ' ' + (data_datetime.getHours() < 10 ? '0' : '') + data_datetime.getHours().toString() + ':' + (data_datetime.getMinutes() < 10 ? '0' : '') + data_datetime.getMinutes().toString() + ' ');
 
       let current_minutes_cell_id_sets = new Set();
       for (let j = 0; j < raw_data[i].length; j++) {
         if (current_minutes_cell_id_sets.has(raw_data[i][j]['cell_id']))
           continue;
+
         current_minutes_cell_id_sets.add(raw_data[i][j]['cell_id'])
         for (let k = raw_datasets.length - 1; k >= 0; --k) {
           if (raw_datasets[k]['label'] === raw_data[i][j]['cell_id']) {

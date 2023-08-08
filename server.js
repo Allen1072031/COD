@@ -17,7 +17,8 @@ db.sequelize.sync({ force: true}).then(() => {
 });
 
 let corsOptions = {
-    origin: "http://64.176.45.205:8085"
+//    origin: "http://64.176.45.205:8085"
+    origin: "http://localhost:8081"
 };
 
 
