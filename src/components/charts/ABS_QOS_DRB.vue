@@ -65,7 +65,7 @@ export default {
     for (let i = data.length - 1; i >= 0; --i) {
       let today = new Date();
       let data_datetime = new Date(data[i].createdAt);
-      let diffMs = (today - data_datetime); // milliseconds between now & Christmas
+      let diffMs = (today - data_datetime); // milliseconds between now & target
       let diffMins = Math.round(diffMs / 60000) % 20; // minutes
 
       if (raw_data[diffMins] == null) {
@@ -73,6 +73,9 @@ export default {
       }
       raw_data[diffMins].push(data[i])
       cell_id_sets.add(data[i]['cell_id'])
+
+      // time
+      raw_chart_labels.push(data_datetime.getMonth().toString() + '/' + data_datetime.getDay().toString() + ' ' + data_datetime.getHours() + ':' + (data_datetime.getMinutes() < 10 ? '0' : '') + data_datetime.getMinutes() + ' ');
     }
 
     // iter over all possible cell_id
@@ -96,9 +99,6 @@ export default {
     for (let i = raw_data.length - 1; i >= 0; --i) {
       if (raw_data[i] === undefined)
         continue;
-
-      const record_time = new Date(new Date() - i * 60000);
-      raw_chart_labels.push(record_time.getMonth().toString() + '/' + record_time.getDay().toString() + ' ' + record_time.getHours() + ':' + (record_time.getMinutes() < 10 ? '0' : '') + record_time.getMinutes() + ' ');
 
       let current_minutes_cell_id_sets = new Set();
       for (let j = 0; j < raw_data[i].length; j++) {

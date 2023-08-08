@@ -23,8 +23,8 @@
             :key="item._id"
         >
           <th scope="row">{{ item._id }}</th>
-          <td>{{ new Date(item.start_time).toLocaleString('en-CA') }}</td>
-          <td v-if="item.end_time">{{ new Date(item.end_time).toLocaleString('en-CA') }}</td>
+          <td>{{ new Date(item.start_time).getMonth().toString() + '/' + new Date(item.start_time).getDay().toString() + ' ' + new Date(item.start_time).getHours() + ':' + (new Date(item.start_time).getMinutes() < 10 ? '0' : '') + new Date(item.start_time).getMinutes() }}</td>
+          <td v-if="item.end_time">{{ new Date(item.end_time).getMonth().toString() + '/' + new Date(item.end_time).getDay().toString() + ' ' + new Date(item.end_time).getHours() + ':' + (new Date(item.end_time).getMinutes() < 10 ? '0' : '') + new Date(item.end_time).getMinutes() }}</td>
           <td v-else>--</td>
           <!--          <td>{{ item.cell_id }}</td>-->
           <td v-if="item.description">{{ item.description }}</td>
