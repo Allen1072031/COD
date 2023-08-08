@@ -9,15 +9,15 @@
             <HandoverSuccessRate />
           </div>
           <div class="col-md-12 col-lg-6 mb-4">
-            <h6>ABS_QOS_DRB (%)</h6>
+            <h6>ABS_QOS_DRB</h6>
             <ABS_QOS_DRB />
           </div>
           <div class="col-md-12 col-lg-6 mb-4">
-            <h6>ULDelay_gNBDU_Cell</h6>
+            <h6>ULDelay_gNBDU_Cell (ms)</h6>
             <ULDelay_gNBDU_Cell />
           </div>
           <div class="col-md-12 col-lg-6 mb-4">
-            <h6>DLDelay_gNBDU_Cell</h6>
+            <h6>DLDelay_gNBDU_Cell (ms)</h6>
             <DLDelay_gNBDU_Cell />
           </div>
         </div>
